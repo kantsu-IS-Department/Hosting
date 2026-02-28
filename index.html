@@ -3,230 +3,653 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J-PORT 販売管理システム (Rev2)</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>次世代クラウド環境 構築ロードマップ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>body{font-family:'Helvetica Neue',Arial,sans-serif}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#f1f1f1}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa; /* Google Light Gray */
+            color: #202124; /* Google Dark Text */
+        }
+
+        /* Material Design Card Style */
+        .cyber-card {
+            background: #ffffff;
+            border: 1px solid #e8eaed;
+            box-shadow: 0 1px 3px rgba(32, 33, 36, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .cyber-card:hover {
+            box-shadow: 0 10px 20px rgba(32, 33, 36, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Straight Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding-left: 50px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-container {
+                padding-left: 80px;
+            }
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background: #e8eaed;
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 40px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            z-index: 1;
+        }
+
+        .timeline-node {
+            position: absolute;
+            left: -50px;
+            top: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 4px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: #202124;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-node {
+                left: -80px;
+                width: 56px;
+                height: 56px;
+                top: 12px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Google Brand Colors */
+        .text-google-blue { color: #4285F4; }
+        .text-google-red { color: #EA4335; }
+        .text-google-yellow { color: #FBBC04; }
+        .text-google-green { color: #34A853; }
+        
+        .border-google-blue { border-color: #4285F4; }
+        .border-google-red { border-color: #EA4335; }
+        .border-google-yellow { border-color: #FBBC04; }
+        .border-google-green { border-color: #34A853; }
+
+        .bg-google-blue-light { background-color: rgba(66, 133, 244, 0.08); }
+        .bg-google-red-light { background-color: rgba(234, 67, 53, 0.08); }
+        .bg-google-yellow-light { background-color: rgba(251, 188, 4, 0.12); } 
+        .bg-google-green-light { background-color: rgba(52, 168, 83, 0.08); }
+
+        .card-top-bar-blue { border-top: 6px solid #4285F4; }
+        .card-top-bar-red { border-top: 6px solid #EA4335; }
+        .card-top-bar-yellow { border-top: 6px solid #FBBC04; }
+        .card-top-bar-green { border-top: 6px solid #34A853; }
+
+        .check-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .check-list-item:hover {
+            background-color: #f1f3f4;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div id="root"></div>
+<body class="antialiased min-h-screen pb-20">
 
-    <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+    <div style="display:none;" 
+         data-palette="Google Material: #f8f9fa, #4285F4, #EA4335, #FBBC04, #34A853, #202124" 
+         data-compliance="Explicitly confirm that NEITHER Mermaid JS NOR SVG were used anywhere in the output within the HTML comments.">
+    </div>
 
-        // Icons
-        const Icon = ({ children, className }) => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>;
-        const Calculator = () => <Icon><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></Icon>;
-        const BarChart3 = () => <Icon><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></Icon>;
-        const CreditCard = () => <Icon><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></Icon>;
-        const Smartphone = () => <Icon><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></Icon>;
-        const Wallet = () => <Icon><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></Icon>;
-        const FileText = () => <Icon><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></Icon>;
-        const Search = () => <Icon><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></Icon>;
-        const Clock = () => <Icon><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></Icon>;
-        const Trash2 = () => <Icon><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></Icon>;
-        const Plus = () => <Icon><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></Icon>;
-        const Save = () => <Icon><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></Icon>;
-        const LayoutDashboard = () => <Icon><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></Icon>;
-        const Settings = () => <Icon><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
+    <header class="pt-24 pb-16 text-center px-4 relative overflow-hidden">
+        <div class="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#4285F4] opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="flex justify-center items-center gap-2 mb-4">
+            <div class="w-4 h-4 rounded-full bg-[#4285F4]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#EA4335]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#FBBC04]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#34A853]"></div>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-[#202124] mb-6 tracking-tight leading-snug">
+            どこでも安全に働ける<br />
+            次世代クラウド環境 <span class="text-google-blue">構築ロードマップ</span>
+        </h1>
+        <p class="text-lg md:text-xl max-w-4xl mx-auto text-[#5f6368] leading-relaxed font-medium">
+            本資料は、ゼロトラスト環境構築に向けた全体ロードマップと、<br>
+            プロジェクトを成功に導くための重要な補足事項（役割分担・事前準備）をまとめたものです。
+        </p>
+    </header>
 
-        // Constants
-        const PRODUCTS = [
-            { code: '1001', name: '混合廃棄物', unitPrice: 12000, isVolumeCalc: true },
-            { code: '1002', name: '木くず', unitPrice: 8000, isVolumeCalc: true },
-            { code: '1003', name: '石膏ボード', unitPrice: 15000, isVolumeCalc: true },
-            { code: '2001', name: '運搬費', unitPrice: 5000, isVolumeCalc: false },
-            { code: '9001', name: 'その他', unitPrice: 0, isVolumeCalc: false },
-        ];
-        const FACTORIES = ['本社工場', '第2工場', '此花工場'];
-        const HANDLERS = ['建部', '塩見', '山田', '鈴木'];
-        const PAYMENT_LABELS = {
-            CASH: { label: '現金', color: 'bg-orange-500 text-white border-orange-600', icon: Wallet },
-            CREDIT: { label: 'カード', color: 'bg-indigo-500 text-white border-indigo-600', icon: CreditCard },
-            PAYPAY: { label: 'PayPay', color: 'bg-red-500 text-white border-red-600', icon: Smartphone },
-            ADVANCE: { label: '事前精算', color: 'bg-teal-500 text-white border-teal-600', icon: FileText },
-            INVOICE: { label: '掛売', color: 'bg-blue-600 text-white border-blue-700', icon: FileText },
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-24">
+
+        <!-- 3つの大きな方針（ゴール共有） -->
+        <section id="pillars" class="scroll-mt-24">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-[#202124] mb-4 inline-block pb-2 relative">
+                    私たちが目指す3つのゴール（基本方針）
+                    <div class="absolute bottom-0 left-0 w-full h-1 flex">
+                        <div class="h-full flex-1 bg-[#4285F4]"></div>
+                        <div class="h-full flex-1 bg-[#EA4335]"></div>
+                        <div class="h-full flex-1 bg-[#FBBC04]"></div>
+                        <div class="h-full flex-1 bg-[#34A853]"></div>
+                    </div>
+                </h2>
+                <p class="text-[#5f6368] max-w-2xl mx-auto mt-4">単なるツールの導入ではなく、以下の3つの制御を効かせることで「利便性」と「安全性」を両立させます。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="cyber-card p-6 flex flex-col h-full card-top-bar-blue">
+                    <div class="text-6xl mb-4 text-google-blue text-center">&#x1F464;</div>
+                    <h3 class="text-2xl font-bold text-[#202124] mb-4 text-center border-b border-[#e8eaed] pb-4">1. ID認証の徹底</h3>
+                    <div class="mb-4 flex-grow">
+                        <p class="text-sm text-[#5f6368] leading-relaxed">すべてのシステムの入り口をGoogleアカウントに統一します。パスワードに加え<strong>「二段階認証」</strong>を必須とし、悪意のあるなりすましを入り口で完全に遮断します。</p>
+                    </div>
+                </div>
+
+                <div class="cyber-card p-6 flex flex-col h-full card-top-bar-red">
+                    <div class="text-6xl mb-4 text-google-red text-center">&#x1F4BB;</div>
+                    <h3 class="text-2xl font-bold text-[#202124] mb-4 text-center border-b border-[#e8eaed] pb-4">2. デバイス認証</h3>
+                    <div class="mb-4 flex-grow">
+                        <p class="text-sm text-[#5f6368] leading-relaxed">会社が管理・許可しており、かつパスコード設定などの<strong>セキュリティが担保された健全な端末（MDM管理下）からのみ</strong>、データへのアクセスを許可します。</p>
+                    </div>
+                </div>
+
+                <div class="cyber-card p-6 flex flex-col h-full card-top-bar-yellow">
+                    <div class="text-6xl mb-4 text-google-yellow text-center">&#x1F6E1;</div>
+                    <h3 class="text-2xl font-bold text-[#202124] mb-4 text-center border-b border-[#e8eaed] pb-4">3. 権限管理と監視</h3>
+                    <div class="mb-4 flex-grow">
+                        <p class="text-sm text-[#5f6368] leading-relaxed">業務に必要な<strong>最小限のデータにのみアクセス権を付与</strong>します。クラウド上の動きを常に監視し、機密情報の社外持ち出しなどの危険な操作をシステムで自動ブロックします。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 8ステップの全体ロードマップ（中長期の地図） -->
+        <section id="roadmap-timeline" class="scroll-mt-24 max-w-5xl mx-auto">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-[#202124] mb-4">全体ロードマップ：8段階の導入ステップ</h2>
+                <p class="text-[#5f6368]">プロジェクト全体の「地図」です。上から下へ、各段階で何が実現し、何を決定していくかを確認できます。</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Step 1: Blue -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-blue text-google-blue">1</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-blue">
+                        <h3 class="text-2xl font-bold text-google-blue mb-2">ステップ1: ログイン画面のGoogle化</h3>
+                        <p class="text-[#5f6368] mb-6">古い社内サーバー（AD）の利用を停止し、パソコンを開くパスワードをGoogleアカウントに統一します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-google-blue mr-2 font-bold">✓</span> 場所を問わずPCにログイン可能に</li>
+                                    <li class="flex"><span class="text-google-blue mr-2 font-bold">✓</span> 管理者層への「二段階認証」先行導入</li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-blue-light rounded-xl p-4 border border-[#4285F4]/20">
+                                <h4 class="text-sm font-bold text-google-blue mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>全端末の洗い出しと「デバイス管理台帳」の作成</li>
+                                    <li>PCのローカル管理者パスワードの全台確認</li>
+                                    <li>二段階認証の必須化期限・パスワードルールの決定</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Red -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-red text-google-red">2</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-red">
+                        <h3 class="text-2xl font-bold text-google-red mb-2">ステップ2: 端末の管理強化・紛失対策</h3>
+                        <p class="text-[#5f6368] mb-6">モバイル管理機能(MDM)を使い、会社支給のスマホやPCを「会社の管理下」に置き、安全を担保します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-google-red mr-2 font-bold">✓</span> スマホ紛失時の遠隔データ消去（リモートワイプ）</li>
+                                    <li class="flex"><span class="text-google-red mr-2 font-bold">✓</span> 業務に不要/危険なアプリのインストール制限</li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-red-light rounded-xl p-4 border border-[#EA4335]/20">
+                                <h4 class="text-sm font-bold text-google-red mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>対象者のApple IDパスワード確認と「探す」のオフ</li>
+                                    <li>USBメモリの利用方針（全面禁止か一部許可か）</li>
+                                    <li>スマホでの利用許可/禁止アプリの選定</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Yellow -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-yellow text-[#d39e00]">3</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-yellow">
+                        <h3 class="text-2xl font-bold text-[#d39e00] mb-2">ステップ3: 社内データのクラウド完全移行</h3>
+                        <p class="text-[#5f6368] mb-6">壊れやすい社内ファイルサーバーを廃止し、Googleドライブへすべての業務データを移行します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-google-yellow mr-2 font-bold">✓</span> 自宅や出張先からでも安全に社内ファイルへアクセス</li>
+                                    <li class="flex"><span class="text-google-yellow mr-2 font-bold">✓</span> サーバーの故障リスクや買い替え費用の完全な撤廃</li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-yellow-light rounded-xl p-4 border border-[#FBBC04]/30">
+                                <h4 class="text-sm font-bold text-[#d39e00] mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>新Googleドライブの「フォルダ階層」と「アクセス権限」の設計</li>
+                                    <li>複合機の「スキャンデータ保存先」の新しい運用ルールの決定</li>
+                                    <li>旧ファイルサーバー（NAS）の最終的な廃止時期</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Green -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-green text-google-green">4</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-green">
+                        <h3 class="text-2xl font-bold text-google-green mb-2">ステップ4: ブラウザの集中管理と拡張機能制御</h3>
+                        <p class="text-[#5f6368] mb-6">業務で利用するChromeブラウザを会社で一括管理し、利便性向上とWeb経由の脅威からの保護を両立させます。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span><strong>Endpoint管理拡張機能</strong>の強制インストールによる端末の集中管理</span></li>
+                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span>許可されていない拡張機能の制限・私用ログインの禁止</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-green-light rounded-xl p-4 border border-[#34A853]/20">
+                                <h4 class="text-sm font-bold text-google-green mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>業務上必要な「許可する拡張機能」のリストアップ</li>
+                                    <li>全社員に自動配布する「標準ブックマークリスト」の作成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Blue -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-blue text-google-blue">5</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-blue">
+                        <h3 class="text-2xl font-bold text-google-blue mb-2">ステップ5: 全社システムのパスワード共通化</h3>
+                        <p class="text-[#5f6368] mb-6">確立した安全な土台の上で、社内の様々なシステム（SaaS）のログインをGoogleに統合（SSO）します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-google-blue mr-2 font-bold">✓</span> 社員の「パスワード忘れ」による業務停止の解消</li>
+                                    <li class="flex"><span class="text-google-blue mr-2 font-bold">✓</span> 退職時のアカウント停止作業のワンクリック化</li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-blue-light rounded-xl p-4 border border-[#4285F4]/20">
+                                <h4 class="text-sm font-bold text-google-blue mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>連携対象となる各SaaSの「管理者アカウント権限」の確保</li>
+                                    <li>共通化を進めるシステムの「優先順位」と年間スケジュールの承認</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Red -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-red text-google-red">6</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-red">
+                        <h3 class="text-2xl font-bold text-google-red mb-2">ステップ6: 情報漏洩の自動ブロック</h3>
+                        <p class="text-[#5f6368] mb-6">機密情報を社外へ出そうとした際、システムが自動で検知してブロックする仕組み（DLP）を導入します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex items-start"><span class="text-google-red mr-2 font-bold">✓</span> <span>機密情報（マイナンバー等）の外部送信ブロック</span></li>
+                                    <li class="flex items-start"><span class="text-google-red mr-2 font-bold">✓</span> <span>指定外の端末（個人スマホなど）からのアクセス拒否</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-red-light rounded-xl p-4 border border-[#EA4335]/20">
+                                <h4 class="text-sm font-bold text-google-red mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>システムに検知させるべき「機密キーワード」の設定</li>
+                                    <li>本格ブロック前の「監査（テスト）期間」のスケジュール合意</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Yellow -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-yellow text-[#d39e00]">7</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-yellow">
+                        <h3 class="text-2xl font-bold text-[#d39e00] mb-2">ステップ7: ルール運用と定期点検</h3>
+                        <p class="text-[#5f6368] mb-6">構築した安全な環境を陳腐化させないため、継続的に監視し、運用ルールを定着させます。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-google-yellow mr-2 font-bold">✓</span> 未許可クラウドサービス（シャドーIT）の検知</li>
+                                    <li class="flex"><span class="text-google-yellow mr-2 font-bold">✓</span> 退職者アカウント等の消し忘れ防止</li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-yellow-light rounded-xl p-4 border border-[#FBBC04]/30">
+                                <h4 class="text-sm font-bold text-[#d39e00] mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>新入社員・退職者発生時の「アカウント・端末準備マニュアル」の作成</li>
+                                    <li>外部への共有リンク等の定期チェック（棚卸し）頻度の決定</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8: Green -->
+                <div class="timeline-item">
+                    <div class="timeline-node border-google-green text-google-green">8</div>
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-green">
+                        <h3 class="text-2xl font-bold text-google-green mb-2">ステップ8: 高度なWebガバナンス管理</h3>
+                        <p class="text-[#5f6368] mb-6">Chrome Enterprise（有償ライセンス）を活用し、ブラウザを境界とした強力なセキュリティと詳細な監査環境を構築します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span>高度なURLフィルタリングとマルウェア・フィッシング防御</span></li>
+                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span>誰が・いつ・どのデータを操作したかの詳細な監査ログの取得</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-google-green-light rounded-xl p-4 border border-[#34A853]/20">
+                                <h4 class="text-sm font-bold text-google-green mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>Chrome Enterpriseライセンス（Core / Premium等）の調達方針</li>
+                                    <li>取得した監査ログの定期的なレビュー体制の構築</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ★ 新規：ロードマップ推進に向けた重要事項（補足セクション） ★ -->
+       <!-- <section id="project-execution" class="scroll-mt-24 mb-24 border-t border-[#e8eaed] pt-16">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-[#202124] mb-4">ロードマップ実現に向けた重要事項（補足）</h2>
+                <p class="text-[#5f6368]">上記ロードマップを円滑に進め、新環境への移行を成功させるための「推進体制」と「チェンジマネジメント」について整理します。</p>
+            </div>
+
+            <!-- 1. プロジェクト推進体制 (役割分担) -->
+            <!--<div class="mb-8">
+                <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-blue pl-3">1. プロジェクト推進体制（共創モデル）</h3>
+                <p class="text-sm text-[#5f6368] mb-6">弊社が専門的な技術領域と泥臭い設定作業を巻き取り、貴社には「社内の情報集約」と「ルールの決定」に集中していただく体制で進行します。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="cyber-card p-6 border-t-4 border-t-google-blue flex flex-col">
+                        <div class="flex items-center gap-3 mb-4 border-b pb-2">
+                            <div class="w-8 h-8 rounded-full bg-google-blue-light flex items-center justify-center text-google-blue">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-[#202124]">サイバーガバナンスラボ（弊社）</h4>
+                        </div>
+                        <ul class="text-sm text-[#5f6368] space-y-3 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-google-blue mt-1"></i> <span>高度なセキュリティ設計とクラウド側の設定構築</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-google-blue mt-1"></i> <span><b>全社員分のPC・スマホの物理的なキッティング（実機設定）</b></span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-google-blue mt-1"></i> <span>技術的な課題の解決と手順書の作成・提供</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="cyber-card p-6 border-t-4 border-t-[#bdc1c6] bg-[#f8f9fa] flex flex-col">
+                        <div class="flex items-center gap-3 mb-4 border-b border-[#e8eaed] pb-2">
+                            <div class="w-8 h-8 rounded-full bg-[#bdc1c6] flex items-center justify-center text-white">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-[#202124]">貴社プロジェクトチーム（お客様）</h4>
+                        </div>
+                        <ul class="text-sm text-[#5f6368] space-y-3 flex-grow font-medium">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-caret-right text-gray-500 mt-1"></i> <span>社内情報の集約（デバイス台帳作成・現在のパスワード確認）</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-caret-right text-gray-500 mt-1"></i> <span>「USBを禁止するか」等の社内運用ルールの最終決定</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-caret-right text-gray-500 mt-1"></i> <span>現場社員へのスケジュール調整と、新しい使い方の社内アナウンス</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. お客様における必須準備事項 -->
+            <!--<div class="mb-8">
+                <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-red pl-3">2. 移行フェーズにおける必須準備事項（アクションアイテム）</h3>
+                <p class="text-sm text-[#5f6368] mb-6">キッティング作業（実機設定）をストップさせないため、対象フェーズまでに以下のご準備をお願いいたします。</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="cyber-card p-6 border-t-4 border-t-google-red">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-file-excel text-google-red"></i>
+                            <h4 class="font-bold text-[#202124]">【最重要】デバイス管理台帳の完成</h4>
+                        </div>
+                        <p class="text-sm text-[#5f6368] mb-3">この台帳を元に、弊社でGoogleの紐付けや当日スケジュールを組みます。空欄があると対象端末の作業が進行できません。</p>
+                        <div class="bg-[#f8f9fa] rounded p-3 border border-[#e8eaed] text-sm text-[#202124] space-y-2">
+                            <p>・全端末のシリアル番号の記入（ABM連携の鍵）</p>
+                            <p>・現在のPCログインIDの確認（Windows環境の引き継ぎ）</p>
+                            <p>・ローカル管理者パスワードの確認</p>
+                        </div>
+                    </div>
+
+                    <div class="cyber-card p-6 border-t-4 border-t-google-yellow">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-bullhorn text-[#d39e00]"></i>
+                            <h4 class="font-bold text-[#202124]">社内（利用者様）への事前アナウンス</h4>
+                        </div>
+                        <p class="text-sm text-[#5f6368] mb-3">当日の混乱やデータ消失を防ぐため、端末を利用している各社員様へ事前の作業依頼と周知をお願いします。</p>
+                        <div class="bg-[#f8f9fa] rounded p-3 border border-[#e8eaed] text-sm text-[#202124] space-y-2">
+                            <p>・【iPhone】「探す」機能のオフとApple IDパスワード確認</p>
+                            <p>・二段階認証アプリ(MFA)やSuica等のデータ退避（初期化で消滅するため）</p>
+                            <p>・キッティング当日の端末提出スケジュールの共有</p>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- 3. AD廃止に伴うチェンジマネジメント -->
+            <!--<div>
+                <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-green pl-3">3. 旧環境（AD）からの脱却に伴うチェンジマネジメント</h3>
+                <p class="text-sm text-[#5f6368] mb-6">古いサーバーを止めるため、現場の運用が変わる部分があります。「今までできていたことができなくなるのでは？」という懸念に対する対応策です。</p>
+                
+                <div class="cyber-card overflow-hidden">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-[#202124] bg-[#f8f9fa] border-b-2 border-google-green">
+                            <tr>
+                                <th class="p-4 w-1/3 font-bold">従来のAD環境での運用</th>
+                                <th class="p-4 w-2/3 font-bold">クラウド移行後の変化と、必要な適応（対策）</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-[#5f6368] divide-y divide-[#e8eaed]">
+                            <tr class="hover:bg-[#f8f9fa] transition-colors">
+                                <td class="p-4 font-bold flex items-center gap-2"><i class="fa-solid fa-folder-open text-gray-400"></i> 共有ファイルサーバー</td>
+                                <td class="p-4"><span class="text-google-blue font-bold">◎ 進化:</span> 故障しやすいNASを廃止し <b>Googleドライブへ完全移行</b> します。事前に新しいフォルダ階層と権限（誰が見れるか）の設計が必要です。</td>
+                            </tr>
+                            <tr class="hover:bg-[#f8f9fa] transition-colors">
+                                <td class="p-4 font-bold flex items-center gap-2"><i class="fa-solid fa-users text-gray-400"></i> 共用PCのログイン</td>
+                                <td class="p-4"><span class="text-google-red font-bold">！ 変更:</span> ADの共有アカウントが使えなくなります。「共有PCであっても各自のGoogleアカウントでログインする」という、よりセキュアな運用ルールへの変更が必要です。</td>
+                            </tr>
+                            <tr class="hover:bg-[#f8f9fa] transition-colors">
+                                <td class="p-4 font-bold flex items-center gap-2"><i class="fa-solid fa-print text-gray-400"></i> 複合機（スキャン保存）</td>
+                                <td class="p-4"><span class="text-google-yellow font-bold">△ 対応:</span> スキャンしたPDFの「パソコンへの保存先」をAD認証で行っていた場合設定が切れます。新しいローカルユーザー情報での複合機再設定が必要です。</td>
+                            </tr>
+                            <tr class="hover:bg-[#f8f9fa] transition-colors">
+                                <td class="p-4 font-bold flex items-center gap-2"><i class="fa-solid fa-network-wired text-gray-400"></i> 社内システム認証</td>
+                                <td class="p-4"><span class="text-google-red font-bold">！ 変更:</span> 奉行シリーズ等がADの「Windows統合認証」に依存している場合、AD停止前に「システムごとの個別ID」や「SSO連携」へ切り替える設定が必要です。</td>
+                            </tr>
+                        </tbody>
+                    </table>--
+                </div>
+            </div>
+
+        </section> 
+
+    </main>
+    <!-- Step Details Modal (保持) -->
+    <div id="stepModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+        <div id="modalBackdrop" class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity opacity-0 cursor-pointer"></div>
+        <div id="modalContent" class="relative z-10 w-full max-w-3xl bg-[#ffffff] border-t-8 rounded-2xl p-6 md:p-10 transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-[#5f6368] hover:text-[#202124] transition-colors bg-[#f8f9fa] p-2 rounded-full hover:bg-[#e8eaed] z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div id="modalBody" class="mt-2"></div>
+        </div>
+    </div>
+
+    <footer class="border-t border-[#e8eaed] py-8 text-center text-[#5f6368] text-sm bg-[#ffffff]">
+        <p class="font-bold text-google-blue text-lg mb-2">CYBER GOVERNANCE LAB</p>
+        <p>Zero Trust Environment Roadmap & Execution Plan</p>
+    </footer>
+
+    <script>
+        // --- モーダル拡大表示機能 ---
+        const modal = document.getElementById('stepModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalContent = document.getElementById('modalContent');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const timelineCards = document.querySelectorAll('#roadmap-timeline .cyber-card');
+
+        timelineCards.forEach(card => {
+            card.classList.add('cursor-pointer', 'group', 'relative');
+            
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#5f6368]';
+            iconDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>`;
+            card.appendChild(iconDiv);
+
+            card.addEventListener('click', () => {
+                modalBody.innerHTML = card.innerHTML;
+                
+                const titleEl = card.querySelector('h3');
+                let themeColor = '#4285F4'; // Google Blue
+                if (titleEl) {
+                    if (titleEl.classList.contains('text-google-green')) themeColor = '#34A853';
+                    else if (titleEl.classList.contains('text-[#d39e00]') || titleEl.classList.contains('text-google-yellow')) themeColor = '#FBBC04';
+                    else if (titleEl.classList.contains('text-google-red')) themeColor = '#EA4335';
+                }
+                modalContent.style.borderColor = themeColor;
+                
+                const title = modalBody.querySelector('h3');
+                if(title) title.className = title.className.replace('text-lg', 'text-2xl md:text-3xl').concat(' mb-6 pr-8');
+                
+                const removeIcon = modalBody.querySelector('.absolute.top-3.right-3');
+                if(removeIcon) removeIcon.remove();
+
+                const paragraphs = modalBody.querySelectorAll('p');
+                paragraphs.forEach(p => p.className = p.className.replace('text-sm', 'text-base md:text-lg').concat(' mb-6'));
+
+                const uls = modalBody.querySelectorAll('ul');
+                uls.forEach(ul => {
+                    ul.className = ul.className.replace('text-xs', 'text-sm md:text-base').replace('space-y-1.5', 'space-y-4').replace('space-y-1', 'space-y-3');
+                });
+
+                const h4s = modalBody.querySelectorAll('h4');
+                h4s.forEach(h4 => h4.className = h4.className.replace('text-xs', 'text-sm md:text-base').concat(' mb-3'));
+
+                const boxDivs = modalBody.querySelectorAll('div.rounded-xl.p-4');
+                boxDivs.forEach(div => {
+                     div.className = div.className.replace('p-4', 'p-6 md:p-8');
+                });
+
+                if(modalBody.classList.contains('text-right')) {
+                    modalBody.classList.remove('text-right');
+                    modalBody.classList.add('text-left');
+                    const innerLefts = modalBody.querySelectorAll('.text-left');
+                    innerLefts.forEach(el => el.classList.remove('text-left'));
+                }
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    modalBackdrop.classList.remove('opacity-0');
+                    modalBackdrop.classList.add('opacity-100');
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            });
+        });
+
+        const closeModal = () => {
+            modalBackdrop.classList.remove('opacity-100');
+            modalBackdrop.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modalBody.innerHTML = '';
+                document.body.style.overflow = '';
+            }, 300);
         };
 
-        function App() {
-            const [activeTab, setActiveTab] = useState('INPUT');
-            const [notification, setNotification] = useState(null);
-            
-            // Initial Dummy Data
-            const generateInitialData = () => {
-                const today = new Date().toISOString().split('T')[0];
-                return [
-                    { id: 'S001', date: today, time: '09:15', customerName: '山田建設', factory: '本社工場', handler: '建部', paymentType: 'CASH', details: [{ id: 'd1', productCode: '1001', productName: '混合廃棄物', isVolumeCalc: true, quantity: 2.5, unitPrice: 12000, amount: 30000, tax: 3000 }], totalAmount: 30000, totalTax: 3000, grandTotal: 33000, timestamp: new Date(`${today}T09:15:00`) },
-                    { id: 'S002', date: today, time: '10:05', customerName: '大阪リフォーム', factory: '本社工場', handler: '塩見', paymentType: 'INVOICE', details: [{ id: 'd2', productCode: '1002', productName: '木くず', isVolumeCalc: true, quantity: 1.2, unitPrice: 8000, amount: 9600, tax: 960 }], totalAmount: 9600, totalTax: 960, grandTotal: 10560, timestamp: new Date(`${today}T10:05:00`) },
-                    { id: 'S003', date: today, time: '10:45', customerName: '鈴木工務店', factory: '本社工場', handler: '山田', paymentType: 'PAYPAY', details: [{ id: 'd3', productCode: '1003', productName: '石膏ボード', isVolumeCalc: true, quantity: 0.5, unitPrice: 15000, amount: 7500, tax: 750 }], totalAmount: 7500, totalTax: 750, grandTotal: 8250, timestamp: new Date(`${today}T10:45:00`) },
-                    { id: 'S004', date: today, time: '11:20', customerName: '佐藤解体', factory: '本社工場', handler: '建部', paymentType: 'CASH', details: [{ id: 'd4', productCode: '1001', productName: '混合廃棄物', isVolumeCalc: true, quantity: 4.0, unitPrice: 12000, amount: 48000, tax: 4800 }], totalAmount: 48000, totalTax: 4800, grandTotal: 52800, timestamp: new Date(`${today}T11:20:00`) },
-                ];
-            };
-            const [salesHistory, setSalesHistory] = useState(generateInitialData());
-
-            const handleSave = (record) => {
-                setSalesHistory([record, ...salesHistory]);
-                setNotification('売上データを保存しました');
-                setTimeout(() => setNotification(null), 3000);
-                setActiveTab('LIST');
-            };
-
-            return (
-                <div className="flex h-screen bg-gray-100 font-sans text-gray-800 overflow-hidden">
-                    <aside className="w-64 bg-slate-800 text-white flex-shrink-0 flex flex-col">
-                        <div className="p-4 border-b border-slate-700">
-                            <h1 className="text-xl font-bold flex items-center gap-2"><LayoutDashboard className="text-blue-400" /> J-PORT Sales</h1>
-                            <p className="text-xs text-slate-400 mt-1">SMILE Cloud Migration</p>
-                        </div>
-                        <nav className="flex-1 p-4 space-y-2">
-                            <button onClick={() => setActiveTab('INPUT')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'INPUT' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-700'}`}>
-                                <Calculator size={20} /><span className="font-medium">売上入力 (受付)</span>
-                            </button>
-                            <button onClick={() => setActiveTab('LIST')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'LIST' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-700'}`}>
-                                <BarChart3 size={20} /><span className="font-medium">照合・集計</span>
-                            </button>
-                            <div className="pt-4 pb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Other</div>
-                            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700"><FileText size={20} /><span className="font-medium">請求データ出力</span></button>
-                            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700"><Settings size={20} /><span className="font-medium">マスタ設定</span></button>
-                        </nav>
-                    </aside>
-                    <main className="flex-1 overflow-hidden bg-gray-50 relative flex flex-col">
-                        {notification && <div className="absolute top-4 right-4 bg-emerald-500 text-white px-6 py-3 rounded shadow-lg z-50 animate-bounce">{notification}</div>}
-                        {activeTab === 'INPUT' ? <InputScreen onSave={handleSave} /> : <ListScreen history={salesHistory} />}
-                    </main>
-                </div>
-            );
-        }
-
-        function InputScreen({ onSave }) {
-            const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-            const [time, setTime] = useState(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
-            const [factory, setFactory] = useState(FACTORIES[0]);
-            const [customer, setCustomer] = useState('');
-            const [handler, setHandler] = useState(HANDLERS[0]);
-            const [paymentType, setPaymentType] = useState('CASH');
-            const [rows, setRows] = useState([{ id: '1', quantity: 0, unitPrice: 0, amount: 0, tax: 0 }]);
-
-            const createNewRow = () => ({ id: Math.random().toString(36).substr(2, 9), productCode: '', productName: '', isVolumeCalc: false, length: 0, width: 0, height: 0, quantity: 0, unitPrice: 0, amount: 0, tax: 0 });
-
-            const handleProductChange = (index, code) => {
-                const product = PRODUCTS.find(p => p.code === code);
-                if (!product) return;
-                const newRows = [...rows];
-                newRows[index] = { ...newRows[index], productCode: product.code, productName: product.name, unitPrice: product.unitPrice, isVolumeCalc: product.isVolumeCalc, quantity: product.isVolumeCalc ? 0 : 1 };
-                calculateRowAmount(newRows[index]);
-                setRows(newRows);
-            };
-
-            const handleValueChange = (index, field, value) => {
-                const newRows = [...rows];
-                newRows[index][field] = value;
-                if (newRows[index].isVolumeCalc && ['length', 'width', 'height'].includes(field)) {
-                    const { length = 0, width = 0, height = 0 } = newRows[index];
-                    newRows[index].quantity = parseFloat((length * width * height).toFixed(3));
-                }
-                calculateRowAmount(newRows[index]);
-                setRows(newRows);
-            };
-
-            const calculateRowAmount = (row) => {
-                row.amount = Math.floor((row.quantity || 0) * (row.unitPrice || 0));
-                row.tax = Math.floor(row.amount * 0.1);
-            };
-
-            const grandTotal = rows.reduce((sum, row) => sum + row.amount + row.tax, 0);
-
-            const handleSubmit = () => {
-                if (!customer) { alert('得意先名を入力してください'); return; }
-                onSave({
-                    id: Math.random().toString(36).substr(2, 9),
-                    date, time, customerName: customer, factory, handler, paymentType, details: rows,
-                    totalAmount: rows.reduce((s, r) => s + r.amount, 0),
-                    totalTax: rows.reduce((s, r) => s + r.tax, 0),
-                    grandTotal,
-                    timestamp: new Date(`${date}T${time}:00`)
-                });
-            };
-
-            return (
-                <div className="h-full overflow-y-auto p-6">
-                    <div className="max-w-5xl mx-auto space-y-6">
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                <div className="md:col-span-3"><label className="text-xs font-bold text-gray-400 uppercase">日付・時刻</label><div className="flex gap-2 mt-1"><input type="date" value={date} onChange={e => setDate(e.target.value)} className="w-full border-gray-300 rounded p-2 border" /><input type="time" value={time} onChange={e => setTime(e.target.value)} className="w-24 border-gray-300 rounded p-2 border" /></div></div>
-                                <div className="md:col-span-3"><label className="text-xs font-bold text-gray-400 uppercase">工場・担当</label><div className="flex gap-2 mt-1"><select value={factory} onChange={e => setFactory(e.target.value)} className="w-full border-gray-300 rounded p-2 border">{FACTORIES.map(f => <option key={f} value={f}>{f}</option>)}</select><select value={handler} onChange={e => setHandler(e.target.value)} className="w-full border-gray-300 rounded p-2 border">{HANDLERS.map(h => <option key={h} value={h}>{h}</option>)}</select></div></div>
-                                <div className="md:col-span-6"><label className="text-xs font-bold text-gray-400 uppercase">得意先</label><div className="relative mt-1"><span className="absolute left-3 top-2.5 text-gray-400"><Search /></span><input type="text" placeholder="得意先名..." value={customer} onChange={e => setCustomer(e.target.value)} className="w-full pl-10 border-gray-300 rounded p-2 border" /></div></div>
-                            </div>
-                            <div className="mt-4"><label className="text-xs font-bold text-gray-400 uppercase mb-2 block">支払区分</label><div className="flex flex-wrap gap-3">{Object.keys(PAYMENT_LABELS).map(type => {
-                                const config = PAYMENT_LABELS[type];
-                                return <button key={type} onClick={() => setPaymentType(type)} className={`flex items-center gap-2 px-4 py-3 rounded-lg border transition-all ${paymentType === type ? `${config.color} ring-2 ring-offset-2 ring-blue-300 shadow-md` : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'}`}><config.icon /><span className="font-bold">{config.label}</span></button>
-                            })}</div></div>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <h3 className="text-md font-bold text-gray-700 mb-4 flex items-center gap-2"><Calculator /> 明細入力 (体積計算)</h3>
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead><tr className="bg-gray-50 text-xs font-medium text-gray-500 uppercase"><th className="px-3 py-2 text-left w-48">商品</th><th className="px-2 py-2 w-20 text-center">縦</th><th className="px-2 py-2 w-20 text-center">横</th><th className="px-2 py-2 w-20 text-center">高さ</th><th className="px-3 py-2 text-right w-24">数量</th><th className="px-3 py-2 text-right w-32">単価</th><th className="px-3 py-2 text-right w-32">金額</th><th className="px-3 py-2 w-10"></th></tr></thead>
-                                <tbody className="divide-y divide-gray-200">{rows.map((row, idx) => (
-                                    <tr key={row.id}><td className="px-3 py-3"><select value={row.productCode} onChange={e => handleProductChange(idx, e.target.value)} className="w-full border-gray-300 rounded p-1 border text-sm"><option value="">選択...</option>{PRODUCTS.map(p => <option key={p.code} value={p.code}>{p.name}</option>)}</select></td>
-                                    <td className="px-1"><input type="number" step="0.1" disabled={!row.isVolumeCalc} value={row.length || ''} onChange={e => handleValueChange(idx, 'length', parseFloat(e.target.value))} className={`w-full text-center rounded p-1 border ${row.isVolumeCalc ? 'bg-yellow-50 border-yellow-300' : 'bg-gray-100'}`} /></td>
-                                    <td className="px-1"><input type="number" step="0.1" disabled={!row.isVolumeCalc} value={row.width || ''} onChange={e => handleValueChange(idx, 'width', parseFloat(e.target.value))} className={`w-full text-center rounded p-1 border ${row.isVolumeCalc ? 'bg-yellow-50 border-yellow-300' : 'bg-gray-100'}`} /></td>
-                                    <td className="px-1"><input type="number" step="0.1" disabled={!row.isVolumeCalc} value={row.height || ''} onChange={e => handleValueChange(idx, 'height', parseFloat(e.target.value))} className={`w-full text-center rounded p-1 border ${row.isVolumeCalc ? 'bg-yellow-50 border-yellow-300' : 'bg-gray-100'}`} /></td>
-                                    <td className="px-3"><input type="number" value={row.quantity} readOnly={row.isVolumeCalc} onChange={e => handleValueChange(idx, 'quantity', parseFloat(e.target.value))} className="w-full text-right rounded p-1 border font-bold" /></td>
-                                    <td className="px-3"><input type="number" value={row.unitPrice} onChange={e => handleValueChange(idx, 'unitPrice', parseFloat(e.target.value))} className="w-full text-right rounded p-1 border" /></td>
-                                    <td className="px-3 text-right font-mono font-bold">¥{row.amount.toLocaleString()}</td>
-                                    <td className="px-1 text-center"><button onClick={() => setRows(rows.filter((_, i) => i !== idx))} className="text-red-400 hover:text-red-600"><Trash2 /></button></td></tr>
-                                ))}</tbody>
-                            </table>
-                            <button onClick={() => setRows([...rows, createNewRow()])} className="mt-4 flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"><Plus /> 行を追加</button>
-                        </div>
-                        <div className="flex flex-col md:flex-row justify-end items-center gap-6 pb-12"><div className="text-right"><p className="text-sm text-gray-500">消費税: ¥{(rows.reduce((s,r)=>s+r.tax,0)).toLocaleString()}</p><p className="text-3xl font-bold text-blue-800">¥{grandTotal.toLocaleString()}</p></div><button onClick={handleSubmit} className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg flex items-center gap-3"><Save /> 売上登録</button></div>
-                    </div>
-                </div>
-            );
-        }
-
-        function ListScreen({ history }) {
-            const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
-            const [filterFactory, setFilterFactory] = useState('本社工場');
-
-            const filteredData = history.filter(item => item.date === filterDate && item.factory === filterFactory).sort((a,b) => b.timestamp - a.timestamp);
-            const totalSales = filteredData.reduce((s, i) => s + i.grandTotal, 0);
-
-            const paymentSummary = useMemo(() => {
-                const summary = {};
-                Object.keys(PAYMENT_LABELS).forEach(k => summary[k] = { count: 0, amount: 0 });
-                filteredData.forEach(i => { summary[i.paymentType].count++; summary[i.paymentType].amount += i.grandTotal; });
-                return summary;
-            }, [filteredData]);
-
-            const hourlySummary = useMemo(() => {
-                const hours = Array.from({ length: 10 }, (_, i) => i + 8);
-                return hours.map(hour => {
-                    const items = filteredData.filter(i => i.timestamp.getHours() === hour);
-                    return { hour, count: items.length, amount: items.reduce((s, i) => s + i.grandTotal, 0) };
-                });
-            }, [filteredData]);
-
-            return (
-                <div className="flex h-full">
-                    <div className="flex-1 flex flex-col border-r border-gray-200 bg-white">
-                        <div className="p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center"><h2 className="font-bold text-gray-700 flex items-center gap-2"><Search /> 売上明細リスト</h2><div className="flex gap-2"><input type="date" value={filterDate} onChange={e => setFilterDate(e.target.value)} className="border rounded px-2 py-1 text-sm" /><select value={filterFactory} onChange={e => setFilterFactory(e.target.value)} className="border rounded px-2 py-1 text-sm">{FACTORIES.map(f => <option key={f} value={f}>{f}</option>)}</select></div></div>
-                        <div className="flex-1 overflow-auto p-4"><table className="min-w-full divide-y divide-gray-200"><thead className="bg-gray-100 sticky top-0"><tr><th className="px-4 py-2 text-left text-xs font-bold text-gray-500">時刻</th><th className="px-4 py-2 text-left text-xs font-bold text-gray-500">得意先</th><th className="px-4 py-2 text-left text-xs font-bold text-gray-500">支払</th><th className="px-4 py-2 text-right text-xs font-bold text-gray-500">金額</th></tr></thead><tbody className="divide-y divide-gray-200">{filteredData.map(r => { const conf = PAYMENT_LABELS[r.paymentType]; return <tr key={r.id} className="hover:bg-blue-50"><td className="px-4 py-3 text-sm text-gray-500 font-mono">{r.time}</td><td className="px-4 py-3 text-sm font-medium text-gray-800">{r.customerName}</td><td className="px-4 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${conf.color.split(' ')[0]} bg-opacity-10 text-${conf.color.split('-')[1]}-700 border border-${conf.color.split('-')[1]}-200`}>{conf.label}</span></td><td className="px-4 py-3 text-sm text-right font-bold text-gray-900">¥{r.grandTotal.toLocaleString()}</td></tr> })}</tbody></table></div>
-                    </div>
-                    <div className="w-96 bg-gray-50 overflow-y-auto border-l border-gray-200 flex flex-col">
-                        <div className="p-5 border-b border-gray-200 bg-white"><h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">本日の売上合計</h3><p className="text-3xl font-bold text-gray-800">¥{totalSales.toLocaleString()}</p><p className="text-sm text-gray-500 mt-1">{filteredData.length} 件の取引</p></div>
-                        <div className="p-5 border-b border-gray-200"><h3 className="text-sm font-bold text-gray-700 flex items-center gap-2 mb-4"><Wallet /> 決済内訳 (レジ照合)</h3><div className="space-y-3">{Object.keys(PAYMENT_LABELS).map(type => { const data = paymentSummary[type]; if (data.count === 0 && type !== 'CASH') return null; const config = PAYMENT_LABELS[type]; return <div key={type} className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm"><div className="flex items-center gap-3"><div className={`w-2 h-8 rounded ${config.color.split(' ')[0]}`}></div><div><p className="text-xs font-bold text-gray-500">{config.label}</p><p className="text-xs text-gray-400">{data.count} 件</p></div></div><p className="text-lg font-bold text-gray-800">¥{data.amount.toLocaleString()}</p></div> })}</div></div>
-                        <div className="p-5 flex-1"><h3 className="text-sm font-bold text-gray-700 flex items-center gap-2 mb-4"><Clock /> 時間帯別 受付状況</h3><div className="space-y-1">{hourlySummary.map(stat => { const max = Math.max(...hourlySummary.map(s=>s.count))||1; const w = Math.max((stat.count/max)*100,2); return <div key={stat.hour} className="flex items-center text-xs group hover:bg-white rounded px-1 py-1"><div className="w-10 font-mono text-gray-500 text-right pr-2">{stat.hour}:00</div><div className="flex-1"><div className="flex items-center h-4 bg-gray-200 rounded-full overflow-hidden"><div style={{width:`${w}%`}} className={`h-full ${stat.count>0?'bg-blue-400':'bg-transparent'}`}></div></div></div><div className="w-8 text-right font-bold text-gray-700">{stat.count>0?stat.count:'-'}</div></div> })}</div></div>
-                    </div>
-                </div>
-            );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
