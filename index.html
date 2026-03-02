@@ -202,9 +202,9 @@
             <div class="mb-10 text-center">
                 <h2 class="text-3xl font-bold text-[#202124] mb-4">全体ロードマップ：8段階の導入ステップ</h2>
                 <p class="text-[#5f6368] mb-6">プロジェクト全体の「地図」です。上から下へ、各段階で何が実現し、何を決定していくかを確認できます。</p>
-                <div class="inline-block bg-[#fce8e6] border border-[#EA4335]/30 text-[#d93025] px-6 py-3 rounded-xl text-sm font-bold shadow-sm text-left max-w-3xl">
+                <div class="inline-block bg-[#fce8e6] border border-[#EA4335]/30 text-[#d93025] px-6 py-4 rounded-xl text-sm font-bold shadow-sm text-left max-w-3xl">
                     <i class="fa-solid fa-circle-info mr-2"></i> 【ご確認事項】今回の弊社ご提供範囲について<br>
-                    <span class="font-normal text-[#5f6368] mt-1 block">今回の個別提案における弊社の作業・サポート範囲は<strong>「ステップ2（端末の管理強化・紛失対策）」まで</strong>となります。<br>ステップ3以降については、AD廃止後の大同青果様の将来的な拡張を見据えた「中長期的な展望」としてお示ししております。</span>
+                    <span class="font-normal text-[#5f6368] mt-2 block leading-relaxed">今回の個別提案における弊社の作業・サポート範囲は<strong>「ステップ2（端末の管理強化・紛失対策）」まで</strong>となります。<br>ステップ3以降については、AD廃止後の大同青果様の将来的な拡張を見据えた「中長期的な展望」としてお示ししております。</span>
                 </div>
             </div>
             
@@ -427,23 +427,14 @@
 
         <!-- 
         ====================================================================
-        ※ 以下は、ご要望により一旦非表示（コメントアウト）としています ※
+        ※ 以下は、ご要望により非表示（コメントアウト）としています。
         ====================================================================
         <section id="project-execution" class="scroll-mt-24 mb-24 border-t border-[#e8eaed] pt-16">
             <div class="mb-10 text-center">
                 <h2 class="text-3xl font-bold text-[#202124] mb-4">ロードマップ実現に向けた重要事項（補足）</h2>
                 <p class="text-[#5f6368]">上記ロードマップを円滑に進め、新環境への移行を成功させるための「推進体制」と「チェンジマネジメント」について整理します。</p>
             </div>
-
-            <div class="mb-8">
-                <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-blue pl-3">1. プロジェクト推進体制（共創モデル）</h3>
-                <p class="text-sm text-[#5f6368] mb-6">弊社が専門的な技術領域と泥臭い設定作業を巻き取り、貴社には「社内の情報集約」と「ルールの決定」に集中していただく体制で進行します。</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    ... (中略) ...
-                </div>
-            </div>
-            
-            ... その他の補足セクション ...
+            ... (中略) ...
         </section>
         -->
 
@@ -464,7 +455,7 @@
 
     <footer class="border-t border-[#e8eaed] py-8 text-center text-[#5f6368] text-sm bg-[#ffffff]">
         <p class="font-bold text-google-blue text-lg mb-2">CYBER GOVERNANCE LAB</p>
-        <p>Zero Trust Environment Roadmap & Execution Plan</p>
+        <p>Zero Trust Environment Roadmap</p>
     </footer>
 
     <script>
@@ -517,13 +508,6 @@
                 boxDivs.forEach(div => {
                      div.className = div.className.replace('p-4', 'p-6 md:p-8');
                 });
-
-                if(modalBody.classList.contains('text-right')) {
-                    modalBody.classList.remove('text-right');
-                    modalBody.classList.add('text-left');
-                    const innerLefts = modalBody.querySelectorAll('.text-left');
-                    innerLefts.forEach(el => el.classList.remove('text-left'));
-                }
 
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
