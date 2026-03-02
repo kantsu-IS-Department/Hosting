@@ -146,6 +146,7 @@
             <div class="w-4 h-4 rounded-full bg-[#FBBC04]"></div>
             <div class="w-4 h-4 rounded-full bg-[#34A853]"></div>
         </div>
+        <p class="text-sm font-bold text-gray-500 tracking-widest mb-4 uppercase">FOR 茨城大同青果株式会社 様</p>
         <h1 class="text-4xl md:text-5xl font-black text-[#202124] mb-6 tracking-tight leading-snug">
             どこでも安全に働ける<br />
             次世代クラウド環境 <span class="text-google-blue">構築ロードマップ</span>
@@ -205,7 +206,11 @@
         <section id="roadmap-timeline" class="scroll-mt-24 max-w-5xl mx-auto">
             <div class="mb-10 text-center">
                 <h2 class="text-3xl font-bold text-[#202124] mb-4">全体ロードマップ：8段階の導入ステップ</h2>
-                <p class="text-[#5f6368]">プロジェクト全体の「地図」です。上から下へ、各段階で何が実現し、何を決定していくかを確認できます。</p>
+                <p class="text-[#5f6368] mb-6">プロジェクト全体の「地図」です。上から下へ、各段階で何が実現し、何を決定していくかを確認できます。</p>
+                <div class="inline-block bg-[#fce8e6] border border-[#EA4335]/30 text-[#d93025] px-6 py-3 rounded-xl text-sm font-bold shadow-sm text-left max-w-3xl">
+                    <i class="fa-solid fa-circle-info mr-2"></i> 【ご確認事項】今回の弊社ご提供範囲について<br>
+                    <span class="font-normal text-[#5f6368] mt-1 block">今回の個別提案における弊社の作業・サポート範囲は<strong>「ステップ2（端末管理の徹底）」まで</strong>となります。<br>ステップ3以降については、AD廃止後の大同青果様の将来的な拡張を見据えた「中長期的な展望」としてお示ししております。</span>
+                </div>
             </div>
             
             <div class="timeline-container">
@@ -214,7 +219,8 @@
                 <!-- Step 1: Blue -->
                 <div class="timeline-item">
                     <div class="timeline-node border-google-blue text-google-blue">1</div>
-                    <div class="cyber-card p-6 md:p-8 card-top-bar-blue">
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-blue relative">
+                        <div class="absolute top-0 right-0 bg-google-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今回のスコープ</div>
                         <h3 class="text-2xl font-bold text-google-blue mb-2">ステップ1: ログイン画面のGoogle化</h3>
                         <p class="text-[#5f6368] mb-6">古い社内サーバー（AD）の利用を停止し、パソコンを開くパスワードをGoogleアカウントに統一します。</p>
                         
@@ -241,7 +247,8 @@
                 <!-- Step 2: Red -->
                 <div class="timeline-item">
                     <div class="timeline-node border-google-red text-google-red">2</div>
-                    <div class="cyber-card p-6 md:p-8 card-top-bar-red">
+                    <div class="cyber-card p-6 md:p-8 card-top-bar-red relative">
+                        <div class="absolute top-0 right-0 bg-google-red text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今回のスコープ</div>
                         <h3 class="text-2xl font-bold text-google-red mb-2">ステップ2: 端末の管理強化・紛失対策</h3>
                         <p class="text-[#5f6368] mb-6">モバイル管理機能(MDM)を使い、会社支給のスマホやPCを「会社の管理下」に置き、安全を担保します。</p>
                         
@@ -265,11 +272,23 @@
                     </div>
                 </div>
 
+                <!-- Scope Divider -->
+                <div class="relative my-16 z-10 md:pl-0">
+                    <div class="absolute left-[-11px] top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#f8f9fa] border-4 border-gray-300 z-10 flex items-center justify-center hidden md:flex"></div>
+                    <div class="w-full border-t-2 border-dashed border-gray-400"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#f8f9fa] px-4 md:px-6 py-2 text-gray-500 font-bold text-sm text-center w-[90%] md:w-auto border border-gray-300 rounded-full shadow-sm">
+                        <i class="fa-solid fa-arrow-up mr-1 text-google-blue"></i> ここまでが今回の提供範囲（フェーズ1） <br class="md:hidden">
+                        <span class="text-xs font-normal mx-2 hidden md:inline">|</span>
+                        <br class="md:hidden">ここからは今後の展望（提供範囲外） <i class="fa-solid fa-arrow-down ml-1 text-gray-400"></i>
+                    </div>
+                </div>
+
                 <!-- Step 3: Yellow -->
-                <div class="timeline-item">
-                    <div class="timeline-node border-google-yellow text-[#d39e00]">3</div>
-                    <div class="cyber-card p-6 md:p-8 card-top-bar-yellow">
-                        <h3 class="text-2xl font-bold text-[#d39e00] mb-2">ステップ3: 社内データのクラウド完全移行</h3>
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">3</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ3: 社内データのクラウド完全移行</h3>
                         <p class="text-[#5f6368] mb-6">壊れやすい社内ファイルサーバーを廃止し、Googleドライブへすべての業務データを移行します。</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -293,20 +312,149 @@
                 </div>
 
                 <!-- Step 4: Green -->
-                <div class="timeline-item">
-                    <div class="timeline-node border-google-green text-google-green">4</div>
-                    <div class="cyber-card p-6 md:p-8 card-top-bar-green">
-                        <h3 class="text-2xl font-bold text-google-green mb-2">ステップ4: ブラウザの集中管理と拡張機能制御</h3>
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">4</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ4: ブラウザの集中管理と拡張機能制御</h3>
                         <p class="text-[#5f6368] mb-6">業務で利用するChromeブラウザを会社で一括管理し、利便性向上とWeb経由の脅威からの保護を両立させます。</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
                                 <ul class="text-sm text-[#202124] space-y-2">
-                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span><strong>Endpoint管理拡張機能</strong>の強制インストールによる端末の集中管理</span></li>
-                                    <li class="flex items-start"><span class="text-google-green mr-2 font-bold">✓</span> <span>許可されていない拡張機能の制限・私用ログインの禁止</span></li>
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span><strong>Endpoint管理拡張機能</strong>の強制インストールによる端末の集中管理</span></li>
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span>許可されていない拡張機能の制限・私用ログインの禁止</span></li>
                                 </ul>
                             </div>
+                            <div class="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                                <h4 class="text-sm font-bold text-gray-600 mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>業務上必要な「許可する拡張機能」のリストアップ</li>
+                                    <li>全社員に自動配布する「標準ブックマークリスト」の作成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Blue -->
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">5</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ5: 全社システムのパスワード共通化</h3>
+                        <p class="text-[#5f6368] mb-6">確立した安全な土台の上で、社内の様々なシステム（SaaS）のログインをGoogleに統合（SSO）します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-gray-500 mr-2 font-bold">✓</span> 社員の「パスワード忘れ」による業務停止の解消</li>
+                                    <li class="flex"><span class="text-gray-500 mr-2 font-bold">✓</span> 退職時のアカウント停止作業のワンクリック化</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                                <h4 class="text-sm font-bold text-gray-600 mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>連携対象となる各SaaSの「管理者アカウント権限」の確保</li>
+                                    <li>共通化を進めるシステムの「優先順位」と年間スケジュールの承認</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Red -->
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">6</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ6: 情報漏洩の自動ブロック</h3>
+                        <p class="text-[#5f6368] mb-6">機密情報を社外へ出そうとした際、システムが自動で検知してブロックする仕組み（DLP）を導入します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span>機密情報（マイナンバー等）の外部送信ブロック</span></li>
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span>指定外の端末（個人スマホなど）からのアクセス拒否</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                                <h4 class="text-sm font-bold text-gray-600 mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>システムに検知させるべき「機密キーワード」の設定</li>
+                                    <li>本格ブロック前の「監査（テスト）期間」のスケジュール合意</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Yellow -->
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">7</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ7: ルール運用と定期点検</h3>
+                        <p class="text-[#5f6368] mb-6">構築した安全な環境を陳腐化させないため、継続的に監視し、運用ルールを定着させます。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex"><span class="text-gray-500 mr-2 font-bold">✓</span> 未許可クラウドサービス（シャドーIT）の検知</li>
+                                    <li class="flex"><span class="text-gray-500 mr-2 font-bold">✓</span> 退職者アカウント等の消し忘れ防止</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                                <h4 class="text-sm font-bold text-gray-600 mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>新入社員・退職者発生時の「アカウント・端末準備マニュアル」の作成</li>
+                                    <li>外部への共有リンク等の定期チェック（棚卸し）頻度の決定</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8: Green -->
+                <div class="timeline-item opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="timeline-node border-gray-400 text-gray-500">8</div>
+                    <div class="cyber-card p-6 md:p-8 border-t-6 border-t-gray-300 relative bg-gray-50/50">
+                        <div class="absolute top-0 right-0 bg-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-[15px]">今後の展望</div>
+                        <h3 class="text-2xl font-bold text-gray-600 mb-2">ステップ8: 高度なWebガバナンス管理</h3>
+                        <p class="text-[#5f6368] mb-6">Chrome Enterprise（有償ライセンス）を活用し、ブラウザを境界とした強力なセキュリティと詳細な監査環境を構築します。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold text-[#202124] mb-3 border-b pb-1">実現するメリット</h4>
+                                <ul class="text-sm text-[#202124] space-y-2">
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span>高度なURLフィルタリングとマルウェア・フィッシング防御</span></li>
+                                    <li class="flex items-start"><span class="text-gray-500 mr-2 font-bold">✓</span> <span>誰が・いつ・どのデータを操作したかの詳細な監査ログの取得</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                                <h4 class="text-sm font-bold text-gray-600 mb-3">当ステップの決定・準備事項</h4>
+                                <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
+                                    <li>Chrome Enterpriseライセンス（Core / Premium等）の調達方針</li>
+                                    <li>取得した監査ログの定期的なレビュー体制の構築</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ★ 新規：ロードマップ推進に向けた重要事項（補足セクション） ★ -->
+        <section id="project-execution" class="scroll-mt-24 mb-24 border-t border-[#e8eaed] pt-16">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-[#202124] mb-4">今回のプロジェクト（フェーズ1）推進に向けた重要事項</h2>
+                <p class="text-[#5f6368]">ステップ2までの新環境移行を成功させるための「推進体制」と「運用変更点」について整理します。</p>
+            </div>
                             <div class="bg-google-green-light rounded-xl p-4 border border-[#34A853]/20">
                                 <h4 class="text-sm font-bold text-google-green mb-3">当ステップの決定・準備事項</h4>
                                 <ul class="text-sm text-[#202124] list-disc list-outside ml-4 space-y-1.5">
@@ -426,14 +574,14 @@
         </section>
 
         <!-- ★ 新規：ロードマップ推進に向けた重要事項（補足セクション） ★ -->
-       <!-- <section id="project-execution" class="scroll-mt-24 mb-24 border-t border-[#e8eaed] pt-16">
+        <section id="project-execution" class="scroll-mt-24 mb-24 border-t border-[#e8eaed] pt-16">
             <div class="mb-10 text-center">
                 <h2 class="text-3xl font-bold text-[#202124] mb-4">ロードマップ実現に向けた重要事項（補足）</h2>
                 <p class="text-[#5f6368]">上記ロードマップを円滑に進め、新環境への移行を成功させるための「推進体制」と「チェンジマネジメント」について整理します。</p>
             </div>
 
             <!-- 1. プロジェクト推進体制 (役割分担) -->
-            <!--<div class="mb-8">
+            <div class="mb-8">
                 <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-blue pl-3">1. プロジェクト推進体制（共創モデル）</h3>
                 <p class="text-sm text-[#5f6368] mb-6">弊社が専門的な技術領域と泥臭い設定作業を巻き取り、貴社には「社内の情報集約」と「ルールの決定」に集中していただく体制で進行します。</p>
                 
@@ -469,7 +617,7 @@
             </div>
 
             <!-- 2. お客様における必須準備事項 -->
-            <!--<div class="mb-8">
+            <div class="mb-8">
                 <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-red pl-3">2. 移行フェーズにおける必須準備事項（アクションアイテム）</h3>
                 <p class="text-sm text-[#5f6368] mb-6">キッティング作業（実機設定）をストップさせないため、対象フェーズまでに以下のご準備をお願いいたします。</p>
                 
@@ -500,10 +648,10 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
 
             <!-- 3. AD廃止に伴うチェンジマネジメント -->
-            <!--<div>
+            <div>
                 <h3 class="text-2xl font-bold text-[#202124] mb-4 border-l-4 border-google-green pl-3">3. 旧環境（AD）からの脱却に伴うチェンジマネジメント</h3>
                 <p class="text-sm text-[#5f6368] mb-6">古いサーバーを止めるため、現場の運用が変わる部分があります。「今までできていたことができなくなるのでは？」という懸念に対する対応策です。</p>
                 
@@ -533,13 +681,14 @@
                                 <td class="p-4"><span class="text-google-red font-bold">！ 変更:</span> 奉行シリーズ等がADの「Windows統合認証」に依存している場合、AD停止前に「システムごとの個別ID」や「SSO連携」へ切り替える設定が必要です。</td>
                             </tr>
                         </tbody>
-                    </table>--
+                    </table>
                 </div>
             </div>
 
-        </section> 
+        </section>
 
     </main>
+
     <!-- Step Details Modal (保持) -->
     <div id="stepModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
         <div id="modalBackdrop" class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity opacity-0 cursor-pointer"></div>
@@ -584,6 +733,7 @@
                     if (titleEl.classList.contains('text-google-green')) themeColor = '#34A853';
                     else if (titleEl.classList.contains('text-[#d39e00]') || titleEl.classList.contains('text-google-yellow')) themeColor = '#FBBC04';
                     else if (titleEl.classList.contains('text-google-red')) themeColor = '#EA4335';
+                    else if (titleEl.classList.contains('text-gray-600')) themeColor = '#9aa0a6'; // For future steps
                 }
                 modalContent.style.borderColor = themeColor;
                 
